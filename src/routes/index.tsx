@@ -8,7 +8,7 @@ const Home = lazy(() => import("../pages/home"));
 
 const AppRoutes = () => {
   return (
-    <Suspense fallback={<>Loading...</>}>
+    <Suspense fallback={<div className="text-white">Loading...</div>}>
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
