@@ -12,16 +12,16 @@ export const ResponseMode: React.FC<ResponseModeProps> = ({
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    const m = value as ResponseModeType;
-    if (m) {
-      setCheckedOption(m);
-      responseModeHandler(m);
+    const mode = value as ResponseModeType;
+    if (mode) {
+      setCheckedOption(mode);
+      responseModeHandler(mode);
     }
   };
 
   return (
-    <>
-      <span className="text-blue-200 xl:text-lg md:text-lg text-base font-normal -mb-4">
+    <div className="flex flex-col w-full items-center mb-5">
+      <span className="text-blue-200 xl:text-lg md:text-lg text-base font-normal">
         Response Mode:
       </span>
       <div className="border border-dashed border-blue-300 p-5 lg:w-1/4 rounded-lg">
@@ -58,6 +58,6 @@ export const ResponseMode: React.FC<ResponseModeProps> = ({
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };

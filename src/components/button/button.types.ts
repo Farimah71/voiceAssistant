@@ -5,8 +5,12 @@ type titleType = {
   icon: ReactNode;
 };
 
+type buttonType = "singleState" | "doubleState";
+
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  titleStart: titleType;
+  buttonType?: buttonType;
+  title?: string;
+  titleStart?: titleType;
   titleStop?: titleType;
   isListening?: boolean;
 };

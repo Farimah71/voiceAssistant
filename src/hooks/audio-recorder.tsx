@@ -1,11 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { useAudioLoadingType } from "../types/useAudio.type";
+import { ResponseModeType } from "../types/response-mode.type";
+import { useGetTextResponse } from "../pages/home/core/_request";
+import { checkForSpeaker } from "../helpers/check-speaker";
 
-export const useAudio = () => {
+export const useAudio = (responseMode: ResponseModeType) => {
   const audioChunksRef = useRef<Blob[]>([]);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [audioURL, setAudioURL] = useState<string | null>(null);
+  const [textResponse, setTextResponse] = useState("");
   const [loading, setLoading] = useState<useAudioLoadingType>({
     isPending: false,
     isListening: false,
@@ -14,32 +18,47 @@ export const useAudio = () => {
 
   useEffect(() => {
     if (audioURL) {
+      checkForSpeaker();
       setLoading({
         isListening: false,
         isPending: true,
         isPlaying: false,
       });
-      const audio = new Audio(audioURL);
-      audioRef.current = audio;
+      if (responseMode == "Audio") {
+        const audio = new Audio(audioURL);
+        audioRef.current = audio;
 
-      // Plays user's recorded audio after 3 seconds
-      const timeout = setTimeout(() => {
-        if (audioRef.current) {
-          audioRef.current
-            .play()
-            .catch((error) => console.error("ERROR PLAYING AUDIO:", error));
-        }
-        setLoading({ isListening: false, isPending: false, isPlaying: true });
-      }, 3000);
-      audioRef.current.onended = () =>
-        setLoading((rest) => ({
-          ...rest,
-          isPlaying: false,
-        }));
-
-      return () => clearTimeout(timeout);
+        // Plays user's recorded audio after 3 seconds
+        const timeout = setTimeout(() => {
+          if (audioRef.current) {
+            audioRef.current
+              .play()
+              .catch((error) => console.error("ERROR PLAYING AUDIO:", error));
+          }
+          setLoading({ isListening: false, isPending: false, isPlaying: true });
+        }, 3000);
+        audioRef.current.onended = () =>
+          setLoading((rest) => ({
+            ...rest,
+            isPlaying: false,
+          }));
+        return () => clearTimeout(timeout);
+      } else if (responseMode == "Text") {
+        fetchTextResponse();
+      }
     }
   }, [audioURL]);
+
+  const fetchTextResponse = async () => {
+    try {
+      const response = await useGetTextResponse();
+      setTextResponse(response.message);
+    } catch (error) {
+      console.error("ERROR FETCHING TEXT RESPONSE", error);
+    } finally {
+      setLoading({ isListening: false, isPending: false, isPlaying: false });
+    }
+  };
 
   const startRecording = async () => {
     try {
@@ -67,9 +86,10 @@ export const useAudio = () => {
       };
 
       newMediaRecorder.start();
+      setTextResponse("");
       setLoading({ isPending: false, isPlaying: false, isListening: true });
     } catch (error) {
-      alert("No Microphone Was Found!");
+      alert("No microphone found.");
     }
   };
 
@@ -84,5 +104,5 @@ export const useAudio = () => {
     }
   };
 
-  return { loading, startRecording, stopRecording };
+  return { loading, textResponse, startRecording, stopRecording };
 };

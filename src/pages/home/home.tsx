@@ -12,20 +12,17 @@ import { ResponseModeType } from "../../types/response-mode.type";
 
 const Home: React.FC = () => {
   const [responseMode, setResponseMode] = useState<ResponseModeType>(null);
-  const [transcript, setTranscript] = useState<string>("");
 
   const {
     startRecording,
     stopRecording,
+    textResponse,
     loading: { isPending, isListening, isPlaying },
-  } = useAudio();
+  } = useAudio(responseMode);
 
   const clickHandler = () => {
-    setTranscript("");
-    if (responseMode == "Audio") {
+    if (responseMode) {
       isListening ? stopRecording() : startRecording();
-    } else if (responseMode == "Text") {
-      setTranscript("Text text test example");
     } else {
       alert("Please choose response mode.");
     }
@@ -35,15 +32,15 @@ const Home: React.FC = () => {
     <>
       <Header />
       <main>
-        <section className="flex flex-col gap-y-5 items-center justify-between p-10">
+        <section className="flex flex-col gap-y-5 items-center justify-between p-10 min-h-96">
           <ResponseMode responseModeHandler={(mode) => setResponseMode(mode)} />
 
           {isPending && <Loading />}
           {isPlaying && <AudioLoading />}
 
-          <Transcript text={transcript} />
-
+          {textResponse && <Transcript text={textResponse} />}
           <Button
+            buttonType="doubleState"
             titleStart={{ icon: <BsMicFill size={20} />, title: "Start" }}
             titleStop={{ icon: <IoMicOffSharp size={20} />, title: "Stop" }}
             isListening={isListening}
