@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export const Footer: React.FC = () => {
   return (
-    <div className="text-gray-500 text-center select-none">
+    <div className="text-gray-500 text-center bottom-0 w-full absolute select-none">
       Developed By{" "}
       <Link
         className="text-gray-400"

@@ -1,9 +1,10 @@
+import { useState } from "react";
 import { BsMicFill } from "react-icons/bs";
+import { IoMicOffSharp } from "react-icons/io5";
 import { Button } from "../../components/button";
 import { ResponseMode } from "./_components/response-mode";
 import { Header } from "../../components/layout/header";
 import { Transcript } from "./_components/transcript";
-import { useState } from "react";
 import { Loading } from "../../components/UI/loading";
 import { useAudio } from "../../hooks/audio-recorder";
 import { AudioLoading } from "../../components/UI/audio-loading";
@@ -43,8 +44,10 @@ const Home: React.FC = () => {
           <Transcript text={transcript} />
 
           <Button
-            title={<BsMicFill />}
+            titleStart={{ icon: <BsMicFill size={20} />, title: "Start" }}
+            titleStop={{ icon: <IoMicOffSharp size={20} />, title: "Stop" }}
             isListening={isListening}
+            disabled={(isPending as boolean) || (isPlaying as boolean)}
             onClick={clickHandler}
           />
         </section>

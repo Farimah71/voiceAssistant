@@ -1,9 +1,12 @@
 import { ButtonHTMLAttributes, ReactNode } from "react";
 
-export type ButtonProps = Omit<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  "title"
-> & {
-  title: string | ReactNode;
+type titleType = {
+  title: string;
+  icon: ReactNode;
+};
+
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  titleStart: titleType;
+  titleStop?: titleType;
   isListening?: boolean;
 };
