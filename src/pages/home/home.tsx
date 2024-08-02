@@ -5,65 +5,29 @@ import { Header } from "../../components/layout/header";
 import { Transcript } from "./_components/transcript";
 import { useState } from "react";
 import { Loading } from "../../components/UI/loading";
+import { useAudio } from "../../hooks/audio-recorder";
+import { AudioLoading } from "../../components/UI/audio-loading";
+import { ResponseModeType } from "../../types/response-mode.type";
 
 const Home: React.FC = () => {
+  const [responseMode, setResponseMode] = useState<ResponseModeType>(null);
   const [transcript, setTranscript] = useState<string>("");
-  const [isRecording, setIsRecording] = useState(false);
-  const [audioURL, setAudioURL] = useState<string | null>(null);
-  const [audioChunks, setAudioChunks] = useState<Blob[]>([]);
-  const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(
-    null
-  );
 
-  const startRecording = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const newMediaRecorder = new MediaRecorder(stream);
-      setMediaRecorder(newMediaRecorder);
-
-      newMediaRecorder.ondataavailable = (event) => {
-        setAudioChunks((prevChunks) => [...prevChunks, event.data]);
-      };
-
-      newMediaRecorder.onstop = () => {
-        const audioBlob = new Blob(audioChunks, {
-          type: "audio/webm;codecs=opus",
-        });
-        console.log(audioBlob);
-        console.log(audioURL);
-        
-        
-        const audioUrl = URL.createObjectURL(audioBlob);
-        setAudioURL(audioUrl);
-        const audio = new Audio(audioUrl);
-        audio.play();
-        
-        playAudioBlob(audioUrl);
-      };
-
-      newMediaRecorder.start();
-      // setAudioChunks([]);
-      setIsRecording(true);
-    } catch (error) {
-      alert("No Microphone Was Found!");
-    }
-  };
-  const playAudioBlob = (blobUrl: string) => {
-    const audio = document.createElement("audio");
-    audio.src = blobUrl;
-    document.body.appendChild(audio);
-    audio.play().catch((error) => console.error("Error playing audio:", error));
-  };
-  const stopRecording = () => {
-    if (mediaRecorder) {
-      mediaRecorder.stop();
-      setIsRecording(false);
-    }
-  };
+  const {
+    startRecording,
+    stopRecording,
+    loading: { isPending, isListening, isPlaying },
+  } = useAudio();
 
   const clickHandler = () => {
     setTranscript("");
-    isRecording ? stopRecording() : startRecording();
+    if (responseMode == "Audio") {
+      isListening ? stopRecording() : startRecording();
+    } else if (responseMode == "Text") {
+      setTranscript("Text text test example");
+    } else {
+      alert("Please choose response mode.");
+    }
   };
 
   return (
@@ -71,11 +35,18 @@ const Home: React.FC = () => {
       <Header />
       <main>
         <section className="flex flex-col gap-y-5 items-center justify-between p-10">
-          <ResponseMode />
+          <ResponseMode responseModeHandler={(mode) => setResponseMode(mode)} />
 
-          {isRecording ? <Loading /> : <Transcript text={transcript} />}
+          {isPending && <Loading />}
+          {isPlaying && <AudioLoading />}
 
-          <Button title={<BsMicFill />} onClick={clickHandler} />
+          <Transcript text={transcript} />
+
+          <Button
+            title={<BsMicFill />}
+            isListening={isListening}
+            onClick={clickHandler}
+          />
         </section>
       </main>
     </>

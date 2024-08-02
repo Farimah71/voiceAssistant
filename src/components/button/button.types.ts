@@ -5,4 +5,5 @@ export type ButtonProps = Omit<
   "title"
 > & {
   title: string | ReactNode;
+  isListening?: boolean;
 };

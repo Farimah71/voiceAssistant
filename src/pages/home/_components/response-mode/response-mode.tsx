@@ -1,10 +1,23 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Radio } from "../../../../components/radio";
 import { MdOutlineTextFields } from "react-icons/md";
 import { SiAudiomack } from "react-icons/si";
+import { ResponseModeProps } from "./response-mode.types";
+import { ResponseModeType } from "../../../../types/response-mode.type";
 
-export const ResponseMode: React.FC = () => {
-  const [checkedOption, setCheckedOption] = useState<string>();
+export const ResponseMode: React.FC<ResponseModeProps> = ({
+  responseModeHandler,
+}) => {
+  const [checkedOption, setCheckedOption] = useState<ResponseModeType>();
+
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    const m = value as ResponseModeType;
+    if (m) {
+      setCheckedOption(m);
+      responseModeHandler(m);
+    }
+  };
 
   return (
     <>
@@ -26,7 +39,7 @@ export const ResponseMode: React.FC = () => {
                 className="duration-200 transition-all text-primary-blue"
               />
             }
-            onChange={(e) => setCheckedOption(e.target.value)}
+            onChange={onChangeHandler}
           />
           <Radio
             name="response_mode"
@@ -41,7 +54,7 @@ export const ResponseMode: React.FC = () => {
                 className="duration-200 transition-all text-primary-blue"
               />
             }
-            onChange={(e) => setCheckedOption(e.target.value)}
+            onChange={onChangeHandler}
           />
         </div>
       </div>
