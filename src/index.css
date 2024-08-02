@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './styles/index.css';
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   /* color-scheme: light dark; */
@@ -12,4 +14,16 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-color: black;
+  background-attachment: fixed;
+}
+
+/* ++++++++++ Scrollbar Customization ++++++++++ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background-color: #bbbfca;
 }

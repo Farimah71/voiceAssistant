@@ -1,5 +1,3 @@
-// /** @type {import('tailwindcss').Config} */
-
 import type { Config } from "tailwindcss";
 
 export const config: Config = {
@@ -9,7 +7,10 @@ export const config: Config = {
       "body-background": "url('./src/assets/wave.jpg')",
     },
     extend: {
-      colors: {},
+      colors: {
+        "primary-blue": "#3487ed",
+        "light-blue": "#91eded",
+      },
       container: {
         center: false,
       },

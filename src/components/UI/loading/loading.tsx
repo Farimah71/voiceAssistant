@@ -5,7 +5,7 @@ export const Loading: React.FC = () => {
     <Audio
       height="50"
       width="100"
-      color="#70c4e6"
+      color="#91eded"
       ariaLabel="audio-loading"
       wrapperStyle={{}}
       wrapperClass="wrapper-class"
