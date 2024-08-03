@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { BsMicFill } from "react-icons/bs";
 import { IoMicOffSharp } from "react-icons/io5";
 import { Button } from "../../components/button";
@@ -23,13 +23,13 @@ const Home: React.FC = () => {
   } = useAudio(responseMode);
 
   // ********** Functions ***********
-  const clickHandler = () => {
+  const clickHandler = useCallback(() => {
     if (responseMode) {
       isListening ? stopRecording() : startRecording();
     } else {
       alert("Please choose response mode.");
     }
-  };
+  }, [responseMode, isListening, startRecording, stopRecording]);
 
   // ********** JSX ***********
   return (

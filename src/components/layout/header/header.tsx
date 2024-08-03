@@ -1,7 +1,8 @@
 import { MdOutlineRecordVoiceOver } from "react-icons/md";
 import { HeaderProps } from "./header.types";
+import { memo } from "react";
 
-export const Header: React.FC<HeaderProps> = ({title}) => {
+export const Header: React.FC<HeaderProps> = memo(({ title }) => {
   // ********** JSX ***********
   return (
     <div className="header-wrapper">
@@ -9,4 +10,4 @@ export const Header: React.FC<HeaderProps> = ({title}) => {
       <MdOutlineRecordVoiceOver className="header-icon" />
     </div>
   );
-};
+});
