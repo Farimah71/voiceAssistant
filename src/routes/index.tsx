@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import { SplashScreen } from "../components/splash-screen";
+import { SuspenseLoader } from "../components/suspense-loader";
 
 // Import elements lazily::begin
 const MainLayout = lazy(() => import("../layout/main_layout"));
@@ -11,7 +11,7 @@ const NotFound = lazy(() => import("../pages/not-found"));
 
 const AppRoutes = () => {
   return (
-    <Suspense fallback={<SplashScreen />}>
+    <Suspense fallback={<SuspenseLoader />}>
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />

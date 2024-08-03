@@ -6,13 +6,15 @@ import { ResponseMode } from "./_components/response-mode";
 import { Header } from "../../components/layout/header";
 import { Transcript } from "./_components/transcript";
 import { Loading } from "../../components/UI/loading";
-import { useAudio } from "../../hooks/audio-recorder";
+import { useAudio } from "../../hooks/useAudio";
 import { AudioLoading } from "../../components/UI/audio-loading";
 import { ResponseModeType } from "../../types/response-mode.type";
 
 const Home: React.FC = () => {
+  // ********** States ***********
   const [responseMode, setResponseMode] = useState<ResponseModeType>(null);
 
+  // ********** Hooks ***********
   const {
     startRecording,
     stopRecording,
@@ -20,6 +22,7 @@ const Home: React.FC = () => {
     loading: { isPending, isListening, isPlaying },
   } = useAudio(responseMode);
 
+  // ********** Functions ***********
   const clickHandler = () => {
     if (responseMode) {
       isListening ? stopRecording() : startRecording();
@@ -28,6 +31,7 @@ const Home: React.FC = () => {
     }
   };
 
+  // ********** JSX ***********
   return (
     <>
       <Header />
@@ -37,8 +41,8 @@ const Home: React.FC = () => {
 
           {isPending && <Loading />}
           {isPlaying && <AudioLoading />}
-
           {textResponse && <Transcript text={textResponse} />}
+
           <Button
             buttonType="doubleState"
             titleStart={{ icon: <BsMicFill size={20} />, title: "Start" }}

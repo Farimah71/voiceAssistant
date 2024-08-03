@@ -9,11 +9,12 @@ export const Button: React.FC<ButtonProps> = ({
   className,
   ...rest
 }) => {
+  // ********** JSX ***********
   return (
     <button
-      className={`${
+      className={`btn ${
         isListening ? "text-red-400 border-red-400 animate-pulse" : "text-white"
-      } border mt-10 mb-5 rounded-full md:p-3 p-2 hover:scale-110 duration-200 focus:outline-none ${className}`}
+      } ${className}`}
       {...rest}
     >
       {buttonType == "doubleState" ? (

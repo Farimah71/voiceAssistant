@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 
 export const Footer: React.FC = () => {
+  // ********** JSX ***********
   return (
-    <div className="text-gray-500 text-center w-full select-none">
+    <div className="footer">
       Developed By{" "}
       <Link
-        className="text-gray-400"
+        className="footer-link"
         to="https://www.linkedin.com/in/farimah-fti"
         rel="noopener noreferrer"
         target="_blank"

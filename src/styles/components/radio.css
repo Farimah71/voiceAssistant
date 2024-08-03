@@ -1,0 +1,3 @@
+.radio-label{
+    @apply select-none cursor-pointer duration-1000 transition-all
+}

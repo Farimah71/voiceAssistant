@@ -7,7 +7,10 @@ type titleType = {
 
 type buttonType = "singleState" | "doubleState";
 
-export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+export type ButtonProps = Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  "title"
+> & {
   buttonType?: buttonType;
   title?: string;
   titleStart?: titleType;

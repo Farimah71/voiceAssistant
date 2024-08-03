@@ -8,8 +8,10 @@ import { ResponseModeType } from "../../../../types/response-mode.type";
 export const ResponseMode: React.FC<ResponseModeProps> = ({
   responseModeHandler,
 }) => {
+  // ********** States ***********
   const [checkedOption, setCheckedOption] = useState<ResponseModeType>();
 
+  // ********** Functions ***********
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     const mode = value as ResponseModeType;
@@ -19,6 +21,7 @@ export const ResponseMode: React.FC<ResponseModeProps> = ({
     }
   };
 
+  // ********** JSX ***********
   return (
     <div className="flex flex-col w-full items-center mb-5">
       <span className="text-blue-200 xl:text-lg md:text-lg text-base font-normal">

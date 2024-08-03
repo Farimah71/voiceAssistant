@@ -1,6 +1,7 @@
 import { Audio } from "react-loader-spinner";
 
 export const AudioLoading: React.FC = () => {
+  // ********** JSX ***********
   return (
     <Audio
       height="40"
