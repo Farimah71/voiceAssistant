@@ -74,7 +74,7 @@ export const useAudio = (responseMode: ResponseModeType) => {
   const fetchTextResponse = async () => {
     try {
       const response = await useGetTextResponse();
-      setTextResponse(response.message);
+      response && setTextResponse(response.message);
     } catch (error) {
       console.error("ERROR FETCHING TEXT RESPONSE", error);
     } finally {

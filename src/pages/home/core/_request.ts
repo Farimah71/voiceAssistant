@@ -9,7 +9,8 @@ export const useGetTextResponse = async () => {
     const response: AxiosResponse = await axios.get(getTextResponse_url);
     const formattedResponse = response?.data.replace(/(\w+):/g, '"$1":'); // **Add double quotes around property names to make response format to a valid JSON** //
     return JSON.parse(formattedResponse);
-  } catch (error) {
+  } catch (error: any) {
+    alert(error?.message);
     console.log("ERROR FETCHING TEXT RESPONSE", error);
   }
 };
