@@ -34,7 +34,7 @@ const Home: React.FC = () => {
   // ********** JSX ***********
   return (
     <>
-      <Header />
+      <Header title="Voice Assistant" />
       <main>
         <section className="flex flex-col gap-y-5 items-center justify-between p-10 min-h-96">
           <ResponseMode responseModeHandler={(mode) => setResponseMode(mode)} />
