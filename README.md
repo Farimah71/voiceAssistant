@@ -92,7 +92,7 @@ These packages are used in this project:
 
 Axios is a promise-based HTTP client for the browser and node.js. In this project Axios is used to access the API.
 
-1 API were used:
+1 API was used:
 - Mock API (For text response)
 
 ## Badges
