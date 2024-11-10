@@ -1,25 +1,31 @@
 
 # Voice Assistant App
 
-A demo web application with voice-recognition and response by text or voice. 
+This Voice Assistant App is designed to demonstrate voice recording capabilities. This app focuses on capturing and storing voice inputs for further processing and analysis and response by text or voice. 
 
 ## Features
 
 - voice/text response mode selection
-
 - Voice recording
 - Playing recorded voice(in voice response mode)
 - Text answer from mock API(in text response mode)
+
+## Future enhancements :tanabata_tree: <a id="future-enhancements"></a>
+- Integration with voice recognition APIs
+- Real-time voice processing and analysis
+- Enhanced user interface with additional features
+
 
 ## Table of contents
 
 - [Voice Assistant App 📣](#voice-assistant-app)
   * [Features](#features)
+  * [Future enhancements](#future-enhancements)
   * [Table of contents](#table-of-contents)
   * [Screenshots](#screenshots)
   * [Packages](#packages)
   * [Style](#style)
-  * [API Reference](#api-reference)
+  * [API reference](#api-reference)
   * [Badges](#badges)
   * [Contributing](#contributing)
   * [Feedback](#feedback)
