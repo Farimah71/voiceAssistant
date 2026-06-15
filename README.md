@@ -1,30 +1,121 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Voice Assistant App
 
-Currently, two official plugins are available:
+This Voice Assistant App is designed to demonstrate voice recording capabilities. This app focuses on capturing and storing voice inputs for further processing and analysis and response by text or voice. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- voice/text response mode selection
+- Voice recording
+- Playing recorded voice(in voice response mode)
+- Text answer from mock API(in text response mode)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Future enhancements :tanabata_tree: <a id="future-enhancements"></a>
+- Integration with voice recognition APIs
+- Real-time voice processing and analysis
+- Enhanced user interface with additional features
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Table of contents
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- [Voice Assistant App 📣](#voice-assistant-app)
+  * [Features](#features)
+  * [Future enhancements](#future-enhancements)
+  * [Table of contents](#table-of-contents)
+  * [Screenshots](#screenshots)
+  * [Packages](#packages)
+  * [Style](#style)
+  * [API reference](#api-reference)
+  * [Badges](#badges)
+  * [Contributing](#contributing)
+  * [Feedback](#feedback)
+
+## Screenshots
+
+#### Desktop view:
+
+  <div align="center">
+
+![App Screenshot](https://github.com/user-attachments/assets/4227089a-afeb-49c9-ad98-7adab281be1f)
+
+  
+  </div>
+  
+  #
+
+  #### Listening to audio and recording:
+
+  <div align="center">
+
+![App Screenshot](https://github.com/user-attachments/assets/203e0d54-25e0-44f9-9000-dea2332433f9)
+
+  
+  </div>
+
+   #
+
+  #### 404 error page:
+
+  <div align="center">
+
+![App Screenshot](https://github.com/user-attachments/assets/f1f976e5-677a-4856-8a40-46767fc1a9b2)
+
+  
+  </div>
+  
+  #
+
+#### Mobile view:
+
+  <div align="center">
+
+![App Screenshot](https://github.com/user-attachments/assets/bad3e930-d9ce-4977-8d53-c71d98a4e49d)
+
+
+  
+  </div>
+
+## Packages
+
+These packages are used in this project:
+
+- TypeScript
+- Axios
+- React-router-dom
+- react-icons
+- react-loader-spinner
+- react-spinners
+- Jest
+- React-testing-library
+## Style
+2 types of styles were used in the project:
+
+- CSS3
+- Tailwind
+
+
+## API Reference
+
+Axios is a promise-based HTTP client for the browser and node.js. In this project Axios is used to access the API.
+
+1 API was used:
+- Mock API (For text response)
+
+## Badges
+
+[![MIT License](https://img.shields.io/github/repo-size/Farimah71/voiceAssistant?style=flat-square)](https://choosealicense.com/licenses/mit/)
+
+
+## Contributing
+
+Contributions are always welcome! :seedling:
+
+I would warmly welcome your contributions to this project if you think you can optimize or add some new features to it.
+
+
+
+## Feedback
+
+If you have any feedback, please feel free to reach out to me at farimah.fattahi2000@gmail.com. :email:
+
+Please let me know if you enjoyed this app by staring it! :star:
